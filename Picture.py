@@ -11,10 +11,10 @@ class Picture():
 
         # 檢查輸入的type
         if not isinstance(pixelHeight, int):
-            raise TypeError("Only integers are allowed in pixalHeight")
+            raise TypeError("Only integer are allowed in pixalHeight")
 
         if not isinstance(pixelWidth, int):
-            raise TypeError("Only integers are allowed in pixalWidth")
+            raise TypeError("Only integer are allowed in pixalWidth")
 
         self._pixelHeight = pixelHeight
         self._pixelWidth = pixelWidth
@@ -97,7 +97,7 @@ class Picture():
 
     # 也可以用function set或get
     def getPixelWidth(self):
-        return self.pixelHeight
+        return self.pixelWidth
 
     def setPixelWidth(self, newWidth: int):  # 也可以用function
         self.pixelWidth = newWidth

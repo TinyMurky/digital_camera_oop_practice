@@ -36,7 +36,9 @@ class Lens():
                 return True
         return False
 
-    def capture(self, newContent=""):
+    def capture(self, newContent: str = ""):
+        if isinstance(newContent, (str, int, float)):
+            raise TypeError("Contain of picture should be str, int or float")
         # 拍照，依照鏡頭規格回傳一個Picture 物件
         content = f"Content: {newContent}, Aperture: {self.aperture}, Focal Length: {self.focalLength}"
         picture = Picture(self.pixelHeight, self.pixelWidth, self.fileFormat, content=content)
@@ -96,6 +98,7 @@ class Lens():
 
     def setFileFormat(self, newFormat: str):
         self.fileFormat = newFormat    
+
     # content setter/getter
     @property
     def content(self):

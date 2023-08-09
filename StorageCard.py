@@ -34,7 +34,7 @@ class StorageCard():
     def __delitem__(self, index):
         if index >= len(self._storage):
             raise IndexError("Index is out of range of stored picture array")
-        # 已使用空間九除要刪去的檔案
+        # 已使用空間去除要刪去的檔案的size
         self._storageUsed -= self._storage[index].size
         del self._storage[index]
 

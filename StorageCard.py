@@ -94,10 +94,16 @@ class StorageCard():
 
     def __str__(self):
         className = self.__class__.__name__
-        return f"{className}:{{\n\ttotalStorage: {self.totalStorage} mb\n\tstorageUsed: {self.storageUsed} mb\n\tstorageRemain: {self.storageRemain} mb\n\tPicture Amount: {len(self)}}}"
+        return f"{className}:{{\n\ttotalStorage: {self.totalStorage} mb\n\tstorageUsed: {self.storageUsed} mb\n\tstorageRemain: {self.storageRemain} mb\n\tPicture Amount: {len(self)}\n}}"
 
 
 class SixteenGBStorageCard(StorageCard):
     def __init__(self):
         totalStorage = 16 * 1024  # 用mb表述儲存空間
         super(SixteenGBStorageCard, self).__init__(totalStorage)
+
+
+class OneGBStorageCard(StorageCard):
+    def __init__(self):
+        totalStorage = 1 * 1024  # 用mb表述儲存空間
+        super(OneGBStorageCard, self).__init__(totalStorage)

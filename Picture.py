@@ -16,8 +16,8 @@ class Picture():
         if not isinstance(pixelWidth, int):
             raise TypeError("Only integer are allowed in pixalWidth")
 
-        if isinstance(content, (str, int, float)):
-            raise TypeError("Contain of picture should be str, int or float")
+        if not isinstance(content, (str, int, float)):
+            raise TypeError("Content of picture should be str, int or float")
 
         self._pixelHeight = pixelHeight
         self._pixelWidth = pixelWidth
@@ -112,8 +112,8 @@ class Picture():
 
     @content.setter
     def content(self, newContent: str):
-        if isinstance(newContent, (str, int, float)):
-            raise TypeError("Contain of picture should be str, int or float")
+        if not isinstance(newContent, (str, int, float)):
+            raise TypeError("Content of picture should be str, int or float")
 
         self._content = newContent
 

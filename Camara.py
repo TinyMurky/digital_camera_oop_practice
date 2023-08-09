@@ -11,7 +11,7 @@ class Camera():
         self._lens = lens
         self._storageCard = storageCard
 
-    def capture(self, content:str = ""):
+    def capture(self, content: str = ""):
         # 鏡頭生成影像，存放於記憶卡
         newPic = self.lens.capture(content)
         self.storageCard.add(newPic)
@@ -33,7 +33,7 @@ class Camera():
         # 也可以用function刪除
         del self[index]
 
-    def deleteByPic(self, pic: Picture):
+    def deleteByPic(self, pic):
         # 可以直接把pic物件從記憶卡中刪除
         self.storageCard.deleteByPic(pic)
 
@@ -56,7 +56,7 @@ class Camera():
 
     def __str__(self):
         className = self.__class__.__name__
-        return f"{className}:{{\n\t{self.lens.__str__},\n\t{self.storageCard.__str__}\n}}"
+        return f"{className}:{{\n\t{str(self.lens)},\n\t{str(self.storageCard)}\n}}"
 
     # ----------------------
     # 以下是基本屬性的getter與setter
@@ -127,7 +127,7 @@ class Camera():
 
     @fileFormat.setter
     def fileFormat(self, newFormat: str):
-        self.lens.fileFormat = self.newFormat
+        self.lens.fileFormat = newFormat
 
     def getFileFormat(self):
         return self.fileFormat

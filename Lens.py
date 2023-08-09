@@ -137,10 +137,10 @@ class Lens():
     @focalLength.setter
     def focalLength(self, newFocalLength):
         if not isinstance(newFocalLength, int):
-            raise TypeError("Only integer are allowed in aperture")
+            raise TypeError("Only integer are allowed in focalLength")
 
         if newFocalLength < self.focalLengthLimits[0] or newFocalLength >= self.focalLengthLimits[1]:
-            raise ValueError('Aperture was set outside of aperture limits ')
+            raise ValueError('Aperture was set outside of focalLength limits ')
         self._focalLength = newFocalLength
 
     def getFocalLength(self):
@@ -180,6 +180,23 @@ class Lens():
 
     def setFocalLengthLimits(self, newLimit):
         self.focalLengthLimits = newLimit
+    
+    # str 與 repr
+    def __repr__(self):
+        className = self.__class__.__name__
+        return f"{className}(pixelHeight={self.pixelHeight}, pixelWidth={self.pixelWidth}, fileFormat={self.fileFormat}, apetureLimits={self.apertureLimits}, focalLengthLimits={self.focalLengthLimits})"
+
+    def __str__(self):
+        className = self.__class__.__name__
+        height = f"pixelHeight: {self.pixelHeight}"
+        width = f"pixelWidth: {self.pixelWidth}"
+        fileFormat = f"fileFormat: {self.fileFormat}"
+        aperture = f"aperture setting: {self.aperture}"
+        apertureLimits = f"aperture Limits: {self.apertureLimits}"
+        focalLength = f"focalLength setting: {self.focalLength}"
+        focalLengthLimits = f"focalLength Limits: {self.focalLengthLimits}"
+
+        return f"{className}:{{\n\t{height},\n\t{width},\n\t{fileFormat},\n\t{aperture},\n\t{apertureLimits},\n\t{focalLength},\n\t{focalLengthLimits}\n}}"
 
 
 class EightMillionLens(Lens):
@@ -197,3 +214,4 @@ class EightMillionLens(Lens):
             apertureLimits,
             focalLengthLimits
         )
+

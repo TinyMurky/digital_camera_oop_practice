@@ -126,8 +126,9 @@ class Picture():
         return f'Picture({picPixelHeight}, {picPixelWidth}, {picFormat}, {picContent})'
 
     def __str__(self):
+        className = self.__class__.__name__
         picFormat = f'Format: {self.fileFormat}'
         picPixel = f'Height * Width: {self.pixelHeight} * {self.pixelWidth}'
         picSize = f'Size: {self.size}'
         picContent = f'Content: {self.content}'
-        return f'{{\n\t{picFormat},\n\t{picPixel},\n\t{picSize},\n\t{picContent}\n}}'
+        return f'{className}:{{\n\t{picFormat},\n\t{picPixel},\n\t{picSize},\n\t{picContent}\n}}'

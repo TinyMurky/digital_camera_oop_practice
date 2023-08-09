@@ -34,7 +34,7 @@ class StorageCard():
     def __delitem__(self, index):
         if index >= len(self._storage):
             raise IndexError("Index is out of range of stored picture array")
-        # 已使用空間九除要刪去的檔案
+        # 已使用空間去除要刪去的檔案的size
         self._storageUsed -= self._storage[index].size
         del self._storage[index]
 
@@ -94,10 +94,16 @@ class StorageCard():
 
     def __str__(self):
         className = self.__class__.__name__
-        return f"{className}:{{\n\ttotalStorage: {self.totalStorage} mb\n\tstorageUsed: {self.storageUsed} mb\n\tstorageRemain: {self.storageRemain} mb\n\tPicture Amount: {len(self)}}}"
+        return f"{className}:{{\n\ttotalStorage: {self.totalStorage} mb\n\tstorageUsed: {self.storageUsed} mb\n\tstorageRemain: {self.storageRemain} mb\n\tPicture Amount: {len(self)}\n}}"
 
 
 class SixteenGBStorageCard(StorageCard):
     def __init__(self):
         totalStorage = 16 * 1024  # 用mb表述儲存空間
         super(SixteenGBStorageCard, self).__init__(totalStorage)
+
+
+class OneGBStorageCard(StorageCard):
+    def __init__(self):
+        totalStorage = 1 * 1024  # 用mb表述儲存空間
+        super(OneGBStorageCard, self).__init__(totalStorage)

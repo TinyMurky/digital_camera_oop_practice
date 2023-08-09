@@ -7,7 +7,7 @@ class Picture():
                  pixelWidth: int = 1080,
                  fileFormat: str = "JPG",
                  *,
-                 content=None):  # 先用content代表picture的內容
+                 content: str = ""):  # 先用content代表picture的內容
 
         # 檢查輸入的type
         if not isinstance(pixelHeight, int):
@@ -15,6 +15,9 @@ class Picture():
 
         if not isinstance(pixelWidth, int):
             raise TypeError("Only integer are allowed in pixalWidth")
+
+        if not isinstance(content, (str, int, float)):
+            raise TypeError("Content of picture should be str, int or float")
 
         self._pixelHeight = pixelHeight
         self._pixelWidth = pixelWidth
@@ -108,7 +111,10 @@ class Picture():
         return self._content
 
     @content.setter
-    def content(self, newContent):
+    def content(self, newContent: str):
+        if not isinstance(newContent, (str, int, float)):
+            raise TypeError("Content of picture should be str, int or float")
+
         self._content = newContent
 
     def getContent(self):

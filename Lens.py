@@ -36,9 +36,11 @@ class Lens():
                 return True
         return False
 
-    def capture(self, newContent=""):
+    def capture(self, newContent: str = ""):
+        if not isinstance(newContent, (str, int, float)):
+            raise TypeError("Content of picture should be str, int or float")
         # 拍照，依照鏡頭規格回傳一個Picture 物件
-        content = f"Content: {newContent}, Aperture: {self.aperture}, Focal Length: {self.focalLength}"
+        content = f"照片內容: {newContent}, Aperture: {self.aperture}, Focal Length: {self.focalLength}"
         picture = Picture(self.pixelHeight, self.pixelWidth, self.fileFormat, content=content)
         return picture
 
@@ -89,13 +91,14 @@ class Lens():
 
     @fileFormat.setter
     def fileFormat(self, newFormat: str):
-        self._fileFormat = self.newFormat
+        self._fileFormat = newFormat
 
     def getFileFormat(self):
         return self.fileFormat
 
     def setFileFormat(self, newFormat: str):
         self.fileFormat = newFormat    
+
     # content setter/getter
     @property
     def content(self):
@@ -121,7 +124,7 @@ class Lens():
             raise TypeError("Only integer are allowed in aperture")
 
         if newAperture < self.apertureLimits[0] or newAperture >= self.apertureLimits[1]:
-            raise ValueError('Aperture was set outside of aperture limits ')
+            raise ValueError(f'Aperture was set outside of aperture limits: {self.apertureLimits}')
         self._aperture = newAperture
 
     def getAperture(self):
@@ -140,7 +143,7 @@ class Lens():
             raise TypeError("Only integer are allowed in focalLength")
 
         if newFocalLength < self.focalLengthLimits[0] or newFocalLength >= self.focalLengthLimits[1]:
-            raise ValueError('Aperture was set outside of focalLength limits ')
+            raise ValueError(f'Aperture was set outside of focalLength limits: {self.focalLengthLimits}')
         self._focalLength = newFocalLength
 
     def getFocalLength(self):
@@ -208,6 +211,23 @@ class EightMillionLens(Lens):
         apertureLimits = [1, 20]
         focalLengthLimits = [24, 500]
         super(EightMillionLens, self).__init__(
+            pixelHeight,
+            pixelWidth,
+            fileFormat,
+            apertureLimits,
+            focalLengthLimits
+        )
+
+
+class TwoMillionLens(Lens):
+    # 1920 * 1080畫素鏡頭
+    def __init__(self):
+        pixelHeight = 1920
+        pixelWidth = 1080
+        fileFormat = "JPG"
+        apertureLimits = [1, 20]
+        focalLengthLimits = [24, 500]
+        super(TwoMillionLens, self).__init__(
             pixelHeight,
             pixelWidth,
             fileFormat,

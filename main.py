@@ -1,4 +1,4 @@
-from Camara import NiconCamera
+from Camera import NiconCamera
 from Lens import TwoMillionLens
 from StorageCard import OneGBStorageCard
 
